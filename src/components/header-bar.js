@@ -12,7 +12,7 @@ export class HeaderBar extends React.Component {
     render() {
         // Only render the log out button if we are logged in
         let logOutButton;
-        let greeting;
+        // let greeting;
         if (this.props.loggedIn) {
             // greeting = <h2>{ `Hello ${this.props.firstName}, welcome to the club...`}</h2>
             logOutButton = (
@@ -30,7 +30,7 @@ export class HeaderBar extends React.Component {
 }
 
 const mapStateToProps = state => {    
-    const {currentUser} = state.auth;
+    // const {currentUser} = state.auth;
     return {
         loggedIn: state.auth.currentUser !== null,
         // firstName: `${currentUser.firstName}`
