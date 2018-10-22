@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import {fetchProtectedData} from '../actions/protected-data';
-import AnswerInput from './answer-input';
-import Feedback from './feedback';
-import Score from './score';
-import { nextQuestion } from "../actions/scores";
+// import AnswerInput from './answer-input';
+// import Feedback from './feedback';
+// import Score from './score';
+// import { nextQuestion } from "../actions/scores";
 
 export class Dashboard extends React.Component {
     componentDidMount() {
@@ -24,12 +24,12 @@ export class Dashboard extends React.Component {
                 <div className="question">
                     <p>{`Question: ${this.props.question/* [this.props.currQuestion]*/}`}</p>
                 </div>
-                <div><AnswerInput />
+                {/* <div><AnswerInput />
                 </div>
                 <div><Feedback />
                 </div>
                 <div><Score />
-                </div>
+                </div> */}
                 <button type="button" className="nextButton" onClick={() => this.props.dispatch(nextQuestion)} /*disabled={this.props.pristine || this.props.submitting}*/>Next</button>
                 {/* <div className="dashboard-name">Name: {this.props.username}</div>
                 <div className="dashboard-protected-data">
