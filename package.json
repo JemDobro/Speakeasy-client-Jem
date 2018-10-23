@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "2.0.5",
     "redux-devtools-extension": "^2.13.5"
   },
   "dependencies": {
@@ -13,6 +12,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.1.1",
+    "react-scripts": "2.0.5",
     "redux": "^4.0.1",
     "redux-form": "^7.3.0",
     "redux-thunk": "^2.2.0"
