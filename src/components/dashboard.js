@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
             <div className="dashboard">
                 <h2>{`Hello ${this.props.firstName}, welcome to the club...`}</h2>
                 <div className="question">
-                    <p>{`Question: ${this.props.protectedData[0].question /*[this.props.currQuestion]*/}`}</p>
+                    <p>{`Question: ${this.props.protectedData[1].question /*[this.props.currQuestion]*/}`}</p>
                 </div>
                 {/* <div><AnswerInput />
                 </div>
