@@ -15,7 +15,7 @@ export class Dashboard extends React.Component {
 
     render() {
         console.log(`In render`, this.props)
-        if (!this.props.protectedData) {
+        if (this.props.protectedData.length < 1) {
             return <div>Loading...</div>
         }
         return (
