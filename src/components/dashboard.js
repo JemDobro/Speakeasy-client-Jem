@@ -22,7 +22,7 @@ export class Dashboard extends React.Component {
             <div className="dashboard">
                 <h2>{`Hello ${this.props.firstName}, welcome to the club...`}</h2>
                 <div className="question">
-                    <p>{`Question: ${this.props.question/* [this.props.currQuestion]*/}`}</p>
+                    <p>{`Question: What question?`/*${this.props.question [this.props.currQuestion]}*/}</p>
                 </div>
                 {/* <div><AnswerInput />
                 </div>
@@ -30,7 +30,7 @@ export class Dashboard extends React.Component {
                 </div>
                 <div><Score />
                 </div> */}
-                <button type="button" className="nextButton" onClick={() => this.props.dispatch(nextQuestion)} /*disabled={this.props.pristine || this.props.submitting}*/>Next</button>
+                <button type="button" className="nextButton" /*onClick={() => this.props.dispatch(nextQuestion)}*/ /*disabled={this.props.pristine || this.props.submitting}*/>Next</button>
                 {/* <div className="dashboard-name">Name: {this.props.username}</div>
                 <div className="dashboard-protected-data">
                     { Protected data: {this.props.protectedData} }
@@ -46,8 +46,8 @@ const mapStateToProps = state => {
         username: state.auth.currentUser.username,
         firstName: `${currentUser.firstName}`,
         protectedData: state.protectedData.data,
-        currQuestion: state.score.currQuestion,
-        question: `${currentUser.questions[currentUser.head].question}`
+        // currQuestion: state.score.currQuestion,
+        // question: `${currentUser.questions[currentUser.head].question}`
     };
 };
 
