@@ -15,14 +15,14 @@ export class Dashboard extends React.Component {
 
     render() {
         console.log(`In render`, this.props)
-        if (!this.props.protectedData) {
+        if (this.props.protectedData.length < 1) {
             return <div>Loading...</div>
         }
         return (
             <div className="dashboard">
                 <h2>{`Hello ${this.props.firstName}, welcome to the club...`}</h2>
                 <div className="question">
-                    <p>{`Question: What question?`/*${this.props.question [this.props.currQuestion]}*/}</p>
+                    <p>{`Question: ${this.props.protectedData[0].question/*[this.props.currQuestion]*/}`}</p>
                 </div>
                 {/* <div><AnswerInput />
                 </div>
