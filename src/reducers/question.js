@@ -1,22 +1,22 @@
 import {
-    FETCH_PROTECTED_DATA_SUCCESS,
-    FETCH_PROTECTED_DATA_ERROR
-} from '../actions/protected-data';
+    FETCH_QUESTION_SUCCESS,
+    FETCH_QUESTION_ERROR
+} from '../actions/question';
 
 const initialState = {
-    data: [],
+    question: "",
     error: null
 };
 
 export default function reducer(state = initialState, action) {
     console.log(action);
-    if (action.type === FETCH_PROTECTED_DATA_SUCCESS) {
+    if (action.type === FETCH_QUESTION_SUCCESS) {
         console.log(action.data);
         return Object.assign({}, state, {
-            data: action.data,
+            question: action.question,
             error: null
         });
-    } else if (action.type === FETCH_PROTECTED_DATA_ERROR) {
+    } else if (action.type === FETCH_QUESTION_ERROR) {
         return Object.assign({}, state, {
             error: action.error
         });
