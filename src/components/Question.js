@@ -1,21 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchProtectedData} from '../actions/protected-data';
+import {fetchQuestions} from '../actions/questions';
+
 
 export class Question extends React.Component {
-  componentDidMount() {
-      console.log(this.props);
-      this.props.dispatch(fetchProtectedData());
-  }
-
-  render() {
+    componentDidMount() {
+        console.log(this.props);
+        this.props.dispatch(fetchQuestions())
+    }
+  
+    render() {
       console.log(`In render`, this.props)
-      if (this.props.protectedData.length < 1) {
+      if (this.props.questions.length < 1) {
           return <div>Loading...</div>
       }
       return (
           <div className="question">
-            <p>{`Question: ${this.props.protectedData[1].question /*[this.props.currQuestion]*/}`}</p>
+            <p>{`Question: ${this.props.questions[0].question /*[this.props.currQuestion]*/}`}</p>
           </div>
       )
   }
@@ -23,7 +24,7 @@ export class Question extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      protectedData: state.protectedData.data,
+      questions: state.questions.questions,
       // currQuestion: state.score.currQuestion,
       // question: `${currentUser.questions[currentUser.head].question}`
   };

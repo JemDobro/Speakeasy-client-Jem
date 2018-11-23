@@ -1,22 +1,22 @@
 import {
-    FETCH_QUESTION_SUCCESS,
-    FETCH_QUESTION_ERROR
-} from '../actions/question';
+    FETCH_QUESTIONS_SUCCESS,
+    FETCH_QUESTIONS_ERROR
+} from '../actions/questions';
 
 const initialState = {
-    question: "",
+    questions: [],
     error: null
 };
 
 export default function reducer(state = initialState, action) {
     console.log(action);
-    if (action.type === FETCH_QUESTION_SUCCESS) {
-        console.log(action.data);
+    if (action.type === FETCH_QUESTIONS_SUCCESS) {
+        console.log(action.questions);
         return Object.assign({}, state, {
-            question: action.question,
+            questions: action.questions,
             error: null
         });
-    } else if (action.type === FETCH_QUESTION_ERROR) {
+    } else if (action.type === FETCH_QUESTIONS_ERROR) {
         return Object.assign({}, state, {
             error: action.error
         });

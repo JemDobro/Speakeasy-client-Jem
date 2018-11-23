@@ -1,19 +1,19 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
-export const FETCH_QUESTION_SUCCESS = 'FETCH_QUESTION_SUCCESS';
-export const fetchQuestionSuccess = data => ({
-    type: FETCH_QUESTION_SUCCESS,
-    data
+export const FETCH_QUESTIONS_SUCCESS = 'FETCH_QUESTIONS_SUCCESS';
+export const fetchQuestionsSuccess = questions => ({
+    type: FETCH_QUESTIONS_SUCCESS,
+    questions
 });
 
-export const FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
-export const fetchQuestionError = error => ({
-    type: FETCH_QUESTION_ERROR,
+export const FETCH_QUESTIONS_ERROR = 'FETCH_QUESTIONS_ERROR';
+export const fetchQuestionsError = error => ({
+    type: FETCH_QUESTIONS_ERROR,
     error
 });
 
-export const fetchQuestion = () => (dispatch, getState) => {
+export const fetchQuestions = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/questions`, {
         method: 'GET',
@@ -24,8 +24,8 @@ export const fetchQuestion = () => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((res) => dispatch(fetchQuestionSuccess(res)))
+        .then((res) => dispatch(fetchQuestionsSuccess(res)))
         .catch(err => {
-            dispatch(fetchQuestionError(err));
+            dispatch(fetchQuestionsError(err));
         });
 };
