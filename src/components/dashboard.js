@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import RequiresLogin from './RequiresLogin';
+import requiresLogin from './requires-login';
 import Question from './Question';
 import Answer from './Answer';
 import SessionStats from './SessionStats';
@@ -28,4 +28,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default RequiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(Dashboard));
