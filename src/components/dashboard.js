@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import requiresLogin from './requires-login';
+import RequiresLogin from './RequiresLogin';
 import {fetchProtectedData} from '../actions/protected-data';
 // import AnswerInput from './answer-input';
 // import Feedback from './feedback';
