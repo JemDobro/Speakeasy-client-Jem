@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import RequiresLogin from './RequiresLogin';
 import Question from './Question';
+import Answer from './Answer';
+import SessionStats from './SessionStats';
 
 export class Dashboard extends React.Component {
     
@@ -11,6 +13,8 @@ export class Dashboard extends React.Component {
             <div className="dashboard">
                 <h2>{`Hello ${this.props.firstName}, welcome to the club...`}</h2>
                 <Question />
+                <Answer />
+                <SessionStats />
             </div>
         );
     }
