@@ -6,11 +6,10 @@ import App from './components/App';
 import store from './store';
 import './index.css';
 
-ReactDOM.render(
+ReactDOM.render(<Router>
     <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>,
+        <App />
+    </Provider>
+    </Router>,
     document.getElementById('root')
 );
