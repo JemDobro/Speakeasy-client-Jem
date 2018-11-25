@@ -68,6 +68,7 @@ export const fetchQuestions = () => (dispatch, getState) => {
 export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(submitAnswerRequest());
+    console.log(answer, questionId);
     return fetch(`${API_BASE_URL}/questions/${questionId}`, {
       method: 'POST',
       headers: {
@@ -77,6 +78,8 @@ export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
       body: JSON.stringify(answer)
     })
       .then(res => normalizeResponseErrors(res))
+    //   .then(res => res.text()) 
+    //   .then(text => console.log(text))  //not even getting to this line, since no response
       .then(res => res.json())
       .then(res => dispatch(submitAnswerSuccess(res)))
       .catch(error => {
