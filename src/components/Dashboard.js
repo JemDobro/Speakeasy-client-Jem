@@ -1,11 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
+import {fetchQuestions} from '../actions/questions';
 import Question from './Question';
 import Answer from './Answer';
 import SessionStats from './SessionStats';
 
 export class Dashboard extends React.Component {
+    componentDidMount() {
+        console.log(this.props);
+        this.props.dispatch(fetchQuestions())
+    }
     
     render() {
         

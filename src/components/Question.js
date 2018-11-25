@@ -1,14 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchQuestions} from '../actions/questions';
-
 
 export class Question extends React.Component {
-    componentDidMount() {
-        console.log(this.props);
-        this.props.dispatch(fetchQuestions())
-    }
-  
+     
     render() {
       console.log(`In render`, this.props)
       if (this.props.questions.length < 1) {
