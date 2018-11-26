@@ -25,9 +25,9 @@ export const submitAnswerRequest = () => ({
 });
 
 export const SUBMIT_ANSWER_SUCCESS = 'SUBMIT_ANSWER_SUCCESS';
-export const submitAnswerSuccess = questions => ({
+export const submitAnswerSuccess = answer => ({
     type: SUBMIT_ANSWER_SUCCESS,
-    questions
+    answer
 });
 
 export const SUBMIT_ANSWER_ERROR = 'SUBMIT_ANSWER_ERROR';
@@ -78,10 +78,14 @@ export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
       body: JSON.stringify(answer)
     })
       .then(res => normalizeResponseErrors(res))
-    //   .then(res => res.text()) 
-    //   .then(text => console.log(text))  //not even getting to this line, since no response
       .then(res => res.json())
-      .then(res => dispatch(submitAnswerSuccess(res)))
+      // .then((res) => {
+      //   if (res.memoryStrength === 1) {
+      //       return this.props.dispatch(incorrectAnswer(res.answer))
+      //   } else {
+      //       return this.props.dispatch(correctAnswer(res.answer))
+      //   }
+      .then(res => dispatch(submitAnswerSuccess(answer.answer)))
       .catch(error => {
         const { reason, message, location } = error;
         dispatch(submitAnswerError(error));

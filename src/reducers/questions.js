@@ -25,19 +25,19 @@ export default function reducer(state = initialState, action) {
         case FETCH_QUESTIONS_REQUEST:
         return {...state, loading: true};
         case FETCH_QUESTIONS_SUCCESS:
-        return {...state, questions: action.questions};
+        return {...state, questions: action.questions, loading: false};
         case FETCH_QUESTIONS_ERROR:
-        return {...state, error: action.error};
+        return {...state, error: action.error, loading: false};
         case SUBMIT_ANSWER_REQUEST:
         return {...state, loading: true};
         case SUBMIT_ANSWER_SUCCESS:
-        return {...state, answer: action.answer, totalQuestionsAnswered: state.totalQuestionsAnswered + 1};
+        return {...state, answer: action.answer, totalQuestionsAnswered: state.totalQuestionsAnswered + 1, loading: false};
         case SUBMIT_ANSWER_ERROR:
-        return {...state, error: action.error};
+        return {...state, error: action.error,loading: false};
         case INCORRECT_ANSWER:
         return {...state, answerResult: 'incorrect', correctAnswer: action.answer};
         case CORRECT_ANSWER:
-        return {...state, answerResult: 'correct', correctAnswer: action.answer,questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1};
+        return {...state, answerResult: 'correct', correctAnswer: action.answer, questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1};
         default: return state;
     }
 }
