@@ -1,13 +1,14 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import {connect} from 'react-redux';
+import {Field, reduxForm, /*focus*/} from 'redux-form';
 import Input from './Input';
 import {required, nonEmpty} from '../validators';
-import { answerSubmitted } from '../actions/questions';
+import { submitAnswer, incorrectAnswer, correctAnswer } from '../actions/questions';
 
 export class AnswerSubmitForm extends React.Component {
     onSubmit(values) {
-        console.log(values.answer);
-        this.props.dispatch(answerSubmitted(values.answer));
+        console.log(values, this.props.questions[this.props.currQuestionIndex].id)
+        return this.props.dispatch(submitAnswer(values, this.props.questions[this.props.currQuestionIndex].id))
     }
 
     render() {
@@ -42,9 +43,16 @@ export class AnswerSubmitForm extends React.Component {
     }
 }
 
-export default reduxForm({
+const mapStateToProps = state => {
+    return {
+        questions: state.questions.questions,
+        currQuestionIndex: state.questions.currQuestionIndex
+    };
+  };
+
+export default connect(mapStateToProps)(reduxForm({
     form: 'AnswerSubmitForm',
   
-    onSubmitFail: (errors, dispatch) =>
-      dispatch(focus('AnswerSubmitForm', Object.keys(errors)[0]))
-  })(AnswerSubmitForm);
+    // onSubmitFail: (errors, dispatch) =>
+    //   dispatch(focus('AnswerSubmitForm', Object.keys(errors)[0]))
+  })(AnswerSubmitForm));

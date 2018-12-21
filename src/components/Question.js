@@ -1,14 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchQuestions} from '../actions/questions';
-
 
 export class Question extends React.Component {
-    componentDidMount() {
-        console.log(this.props);
-        this.props.dispatch(fetchQuestions())
-    }
-  
+     
     render() {
       console.log(`In render`, this.props)
       if (this.props.questions.length < 1) {
@@ -16,7 +10,7 @@ export class Question extends React.Component {
       }
       return (
           <div className="question">
-            <p>{`Question: ${this.props.questions[0].question /*[this.props.currQuestion]*/}`}</p>
+            <p>{`Question: ${this.props.questions[this.props.currQuestionIndex].question /*[this.props.currQuestion]*/}`}</p>
           </div>
       )
   }
@@ -25,6 +19,7 @@ export class Question extends React.Component {
 const mapStateToProps = state => {
   return {
       questions: state.questions.questions,
+      currQuestionIndex: state.questions.currQuestionIndex
       // currQuestion: state.score.currQuestion,
       // question: `${currentUser.questions[currentUser.head].question}`
   };
