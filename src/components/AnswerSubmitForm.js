@@ -7,16 +7,8 @@ import { submitAnswer, incorrectAnswer, correctAnswer } from '../actions/questio
 
 export class AnswerSubmitForm extends React.Component {
     onSubmit(values) {
-        console.log(values, this.props.questions[0].id)
-        return this.props.dispatch(submitAnswer(values, this.props.questions[0].id))
-        .then((res) => {
-            // if (res.memoryStrength === 1) {
-            //     return this.props.dispatch(incorrectAnswer(res.answer))
-            // } else {
-            //     return this.props.dispatch(correctAnswer(res.answer))
-            // }
-            console.log(res);
-        })
+        console.log(values, this.props.questions[this.props.currQuestionIndex].id)
+        return this.props.dispatch(submitAnswer(values, this.props.questions[this.props.currQuestionIndex].id))
     }
 
     render() {
@@ -53,7 +45,8 @@ export class AnswerSubmitForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        questions: state.questions.questions
+        questions: state.questions.questions,
+        currQuestionIndex: state.questions.currQuestionIndex
     };
   };
 

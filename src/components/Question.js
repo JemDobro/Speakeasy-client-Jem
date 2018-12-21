@@ -10,7 +10,7 @@ export class Question extends React.Component {
       }
       return (
           <div className="question">
-            <p>{`Question: ${this.props.questions[0].question /*[this.props.currQuestion]*/}`}</p>
+            <p>{`Question: ${this.props.questions[this.props.currQuestionIndex].question /*[this.props.currQuestion]*/}`}</p>
           </div>
       )
   }
@@ -19,6 +19,7 @@ export class Question extends React.Component {
 const mapStateToProps = state => {
   return {
       questions: state.questions.questions,
+      currQuestionIndex: state.questions.currQuestionIndex
       // currQuestion: state.score.currQuestion,
       // question: `${currentUser.questions[currentUser.head].question}`
   };

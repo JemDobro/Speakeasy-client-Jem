@@ -48,12 +48,16 @@ export const correctAnswer = answer => ({
   answer
 });
 
+export const NEXT_QUESTION = 'NEXT_QUESTION';
+export const nextQuestion = () => ({
+  type: NEXT_QUESTION
+});
+
 export const fetchQuestions = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/questions`, {
         method: 'GET',
         headers: {
-            // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`
         }
     })
@@ -68,7 +72,6 @@ export const fetchQuestions = () => (dispatch, getState) => {
 export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(submitAnswerRequest());
-    console.log(answer, questionId);
     return fetch(`${API_BASE_URL}/questions/${questionId}`, {
       method: 'POST',
       headers: {
@@ -79,13 +82,14 @@ export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
     })
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
-      // .then((res) => {
-      //   if (res.memoryStrength === 1) {
-      //       return this.props.dispatch(incorrectAnswer(res.answer))
-      //   } else {
-      //       return this.props.dispatch(correctAnswer(res.answer))
-      //   }
-      .then(res => dispatch(submitAnswerSuccess(answer.answer)))
+      .then((res) => {
+        if (res.memoryStrength === 1) {
+            dispatch(incorrectAnswer(res.answer))
+        } else {
+            dispatch(correctAnswer(res.answer))
+        }
+      })
+      .then(() => dispatch(submitAnswerSuccess(answer.answer)))
       .catch(error => {
         const { reason, message, location } = error;
         dispatch(submitAnswerError(error));

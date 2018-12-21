@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {nextQuestion} from '../actions/questions';
 
 export class Feedback extends React.Component {
     componentDidMount() {
@@ -9,16 +10,18 @@ export class Feedback extends React.Component {
     render() {
         if (this.props.answerResult === 'correct') {
             return (
-                <div className="feedback-correct">
+                <main className="feedback-correct">
                     <p>{`You answered: ${this.props.answer}.`}</p>
-                    <p>You are correct - you just upped your stats and your status!  Keep Going!</p>        
-                </div>)
+                    <p>You are correct - you just upped your stats and your status!  Keep Going!</p>
+                    <button onClick={() => this.props.dispatch(nextQuestion())}>Next</button>        
+                </main>)
         } else if (this.props.answerResult === 'incorrect') {
             return (
-                <div className="feedback-incorrect">
-                <p>{`You answered: ${this.props.answer}.`}</p>
-                <p>{`The correct answer is: ${this.props.correctAnswer}.  Let's try another one!`}</p>        
-                </div>
+                <main className="feedback-incorrect">
+                    <p>{`You answered: ${this.props.answer}.`}</p>
+                    <p>{`The correct answer is: ${this.props.correctAnswer}.  Let's try another one!`}</p>
+                    <button onClick={() => this.props.dispatch(nextQuestion())}>Next</button>        
+                </main>
             )
         } else {
             return null;
