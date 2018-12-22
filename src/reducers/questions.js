@@ -1,18 +1,17 @@
 import {
-    FETCH_QUESTIONS_REQUEST,
-    FETCH_QUESTIONS_SUCCESS,
-    FETCH_QUESTIONS_ERROR,
+    FETCH_QUESTION_REQUEST,
+    FETCH_QUESTION_SUCCESS,
+    FETCH_QUESTION_ERROR,
     SUBMIT_ANSWER_REQUEST,
     SUBMIT_ANSWER_SUCCESS,
     SUBMIT_ANSWER_ERROR,
     INCORRECT_ANSWER,
     CORRECT_ANSWER,
-    NEXT_QUESTION
+    CLEAR_SESSION
 } from '../actions/questions';
 
 const initialState = {
-    questions: [],
-    currQuestionIndex: 0,
+    question: '',
     answer: null,
     answerResult: '',
     correctAnswer: null,
@@ -24,12 +23,12 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case FETCH_QUESTIONS_REQUEST:
+        case FETCH_QUESTION_REQUEST:
         case SUBMIT_ANSWER_REQUEST:
-        return {...state, loading: true};
-        case FETCH_QUESTIONS_SUCCESS:
-        return {...state, questions: action.questions, loading: false};
-        case FETCH_QUESTIONS_ERROR:
+        return {...state, answer: null, answerResult: '', correctAnswer: null, loading: true};
+        case FETCH_QUESTION_SUCCESS:
+        return {...state, question: action.question, loading: false};
+        case FETCH_QUESTION_ERROR:
         case SUBMIT_ANSWER_ERROR:
         return {...state, error: action.error, loading: false};
         case SUBMIT_ANSWER_SUCCESS:
@@ -37,9 +36,9 @@ export default function reducer(state = initialState, action) {
         case INCORRECT_ANSWER:
         return {...state, answerResult: 'incorrect', correctAnswer: action.answer};
         case CORRECT_ANSWER:
-        return {...state, answerResult: 'correct', correctAnswer: action.answer, questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1}; 
-        case NEXT_QUESTION:
-        return {...state, currQuestionIndex: state.currQuestionIndex + 1, answer: null, answerResult: '', correctAnswer: null}
+        return {...state, answerResult: 'correct', correctAnswer: action.answer, questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1};
+        case CLEAR_SESSION:
+        return initialState;
         default: return state;
     }
 }
