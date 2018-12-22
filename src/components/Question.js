@@ -4,13 +4,13 @@ import {connect} from 'react-redux';
 export class Question extends React.Component {
      
     render() {
-      console.log(`In render`, this.props)
-      if (this.props.questions.length < 1) {
+      console.log(`In render`, this.props);
+      if (this.props.question.length < 1) {
           return <div>Loading...</div>
       }
       return (
           <div className="question">
-            <p>{`Question: ${this.props.questions[this.props.currQuestionIndex].question /*[this.props.currQuestion]*/}`}</p>
+            <p>{`Question: ${this.props.question}`}</p>
           </div>
       )
   }
@@ -18,10 +18,7 @@ export class Question extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      questions: state.questions.questions,
-      currQuestionIndex: state.questions.currQuestionIndex
-      // currQuestion: state.score.currQuestion,
-      // question: `${currentUser.questions[currentUser.head].question}`
+      question: state.questions.question
   };
 };
 

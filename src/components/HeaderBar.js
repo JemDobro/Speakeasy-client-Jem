@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {clearSession} from '../actions/questions';
 import {clearAuth} from '../actions/auth';
 import {clearAuthToken} from '../local-storage';
 
 export class HeaderBar extends React.Component {
     logOut() {
+        this.props.dispatch(clearSession());
         this.props.dispatch(clearAuth());
         clearAuthToken();
     }

@@ -2,20 +2,20 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import { SubmissionError } from 'redux-form';
 
-export const FETCH_QUESTIONS_REQUEST = 'FETCH_QUESTIONS_REQUEST';
-export const fetchQuestionsRequest = () => ({
-  type: FETCH_QUESTIONS_REQUEST
+export const FETCH_QUESTION_REQUEST = 'FETCH_QUESTION_REQUEST';
+export const fetchQuestionRequest = () => ({
+  type: FETCH_QUESTION_REQUEST
 });
 
-export const FETCH_QUESTIONS_SUCCESS = 'FETCH_QUESTIONS_SUCCESS';
-export const fetchQuestionsSuccess = questions => ({
-    type: FETCH_QUESTIONS_SUCCESS,
-    questions
+export const FETCH_QUESTION_SUCCESS = 'FETCH_QUESTION_SUCCESS';
+export const fetchQuestionSuccess = question => ({
+    type: FETCH_QUESTION_SUCCESS,
+    question
 });
 
-export const FETCH_QUESTIONS_ERROR = 'FETCH_QUESTIONS_ERROR';
-export const fetchQuestionsError = error => ({
-    type: FETCH_QUESTIONS_ERROR,
+export const FETCH_QUESTION_ERROR = 'FETCH_QUESTION_ERROR';
+export const fetchQuestionError = error => ({
+    type: FETCH_QUESTION_ERROR,
     error
 });
 
@@ -48,31 +48,32 @@ export const correctAnswer = answer => ({
   answer
 });
 
-export const NEXT_QUESTION = 'NEXT_QUESTION';
-export const nextQuestion = () => ({
-  type: NEXT_QUESTION
+export const CLEAR_SESSION = 'CLEAR_SESSION';
+export const clearSession = () => ({
+  type: CLEAR_SESSION
 });
 
-export const fetchQuestions = () => (dispatch, getState) => {
+export const fetchQuestion = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    return fetch(`${API_BASE_URL}/questions`, {
+    dispatch(fetchQuestionRequest());
+    return fetch(`${API_BASE_URL}/users/next`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${authToken}`
         }
     })
         .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then((res) => dispatch(fetchQuestionsSuccess(res)))
+        .then(res =>res.json())
+        .then((res) => dispatch(fetchQuestionSuccess(res)))
         .catch(err => {
-            dispatch(fetchQuestionsError(err));
+            dispatch(fetchQuestionError(err));
         });
 };
 
-export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
+export const submitAnswer = (answer) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     dispatch(submitAnswerRequest());
-    return fetch(`${API_BASE_URL}/questions/${questionId}`, {
+    return fetch(`${API_BASE_URL}/users/answer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -82,6 +83,7 @@ export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
     })
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
+      // .then(res => console.log(res))
       .then((res) => {
         if (res.memoryStrength === 1) {
             dispatch(incorrectAnswer(res.answer))
@@ -102,3 +104,8 @@ export const submitAnswer = (answer, questionId) => (dispatch, getState) => {
         }
       });
   };
+
+  export const resetSession = () => (dispatch) => {
+    dispatch(clearSession());
+    dispatch(fetchQuestion());
+  }

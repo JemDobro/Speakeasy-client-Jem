@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import {fetchQuestions} from '../actions/questions';
+import {fetchQuestion} from '../actions/questions';
 import Question from './Question';
 import Answer from './Answer';
 import SessionStats from './SessionStats';
@@ -9,7 +9,7 @@ import SessionStats from './SessionStats';
 export class Dashboard extends React.Component {
     componentDidMount() {
         console.log(this.props);
-        this.props.dispatch(fetchQuestions())
+        this.props.dispatch(fetchQuestion())
     }
     
     render() {
@@ -28,8 +28,7 @@ export class Dashboard extends React.Component {
 const mapStateToProps = state => {
     const {currentUser} = state.auth;
     return {
-        username: state.auth.currentUser.username,
-        firstName: `${currentUser.firstName}`,
+        firstName: `${currentUser.firstName}`
     };
 };
 
