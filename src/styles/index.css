@@ -54,6 +54,10 @@ h2, p {
   text-align: center;
 }
 
+.demoUser {
+  font-style: italic;
+}
+
 .greeting {
   padding: 10px;
 }
