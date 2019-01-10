@@ -1,6 +1,5 @@
 .header-bar-img {
   display: flex;
-  /* flex-direction: column; */
   width: 100%;   
   line-height: 0;
 } 
@@ -15,7 +14,6 @@
   flex-grow: 1;
   min-width: 33.33%;
   align-self: center;
-  /* align-items: stretch; */
   margin-top: 0px;
   font-weight: bold;
 }
