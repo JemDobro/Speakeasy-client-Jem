@@ -1,34 +1,39 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
-import {fetchQuestion} from '../actions/questions';
 import Question from './Question';
 import Answer from './Answer';
 import SessionStats from './SessionStats';
+import Info from './Info';
+import AllTimeStats from './AllTimeStats';
 
-export class Dashboard extends React.Component {
-    componentDidMount() {
-        console.log(this.props);
-        this.props.dispatch(fetchQuestion())
-    }
+export function Dashboard(props) {
     
-    render() {
-        
-        return (
-            <div className="dashboard">
-                <h2>{`Hello ${this.props.firstName}, welcome to the club...`}</h2>
-                <Question />
-                <Answer />
-                <SessionStats />
-            </div>
-        );
+    let allTimeStats;
+    let info;
+    if (props.wantsAllTimeStats) {
+        allTimeStats = <AllTimeStats />;
+    };
+
+    if (props.wantsInfo) {
+        info = <Info />;
     }
+            
+    return (
+        <main role="main" className="dashboard">
+            {info}
+            <Question />
+            <Answer />
+            <SessionStats />
+            {allTimeStats}
+        </main>
+    );    
 }
 
 const mapStateToProps = state => {
-    const {currentUser} = state.auth;
-    return {
-        firstName: `${currentUser.firstName}`
+    return {        
+        wantsAllTimeStats: state.allTimeStats.wantsAllTimeStats,
+        wantsInfo: state.questions.wantsInfo
     };
 };
 

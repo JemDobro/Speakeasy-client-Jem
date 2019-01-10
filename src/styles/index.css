@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+html, body, #root, .app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;   
+  line-height: 1.5;
+} 
+
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+section, .answer-submit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255, 196, 0, 0.952);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 3px;
+}
+
+.reg-section, .login-section {
+  border: 0px;
+  padding: 10px 10px 10px 0px;
+}
+
+.sessionStats, .allTimeStats, .info {
+  width: 100%;
+}
+
+h1, h2 {
+  font-family: 'Diplomata', cursive;
+}
+
+h2, p {
+  text-align: center;
+}
+
+.greeting {
+  padding: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 3px;
+}
+
+label {
+  line-height: 1.15;
+  margin-top: 10px;
+}
+
+.form-error {
+  color: white;
+  text-align: center;
+  background-color: rgba(255, 196, 0, 0.952);
+  border: 1px solid black;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3x;
+  border-radius: 3px;
+  width: 100%;
+}
+
+input, button {
+  background:black(255, 196, 0, 0.952);
+  color: white(14, 14, 75);
+  border: 1px solid black;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3x;
+  border-radius: 3px;
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  text-indent: 6px;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+}
+
+input:focus {
+  outline: 2px solid black;
+}
+
+button {
+  background:rgba(255, 196, 0, 0.952);
+  color: black(14, 14, 75);
+  border: 1px solid black;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  min-width: 33.33%;
+  align-self: center;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  height: 25px;
+}
+
+button:hover:enabled {
+  background-color: black;
+  color: rgba(255, 196, 0, 0.952);
+}
+
+.game-btn {
+  margin-top: 20px;
+}
+
+.loggedOut {
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  height: calc(75vh);
+}
+
+@media screen and (min-width: 700px){
+  main {
+    flex-flow: row wrap;
+    padding: 10px 20px;
+  } 
+  section, .answer-submit-form, form, img {
+    width: 49%;
+    flex-grow: 1;
+  }
+  .reg-form, .login-form {
+    width: 100%;
+  }
+
+  .reg-section, .login-section {
+    padding: 10px 0px 10px 10px;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  main {
+    font-size: 1.5vw;
+  } 
+}

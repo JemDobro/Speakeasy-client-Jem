@@ -3,14 +3,12 @@ import {connect} from 'react-redux';
 import AnswerSubmitForm from './AnswerSubmitForm';
 import Feedback from './Feedback';
 
-export class Answer extends React.Component {
+export function Answer(props) {
   
-    render() {
-      if (this.props.answer !== null) {
-        return <Feedback />
-      }
-      return <AnswerSubmitForm />
+  if (props.answer !== null) {
+    return <Feedback />
   }
+  return <AnswerSubmitForm />
 }
 
 const mapStateToProps = state => {

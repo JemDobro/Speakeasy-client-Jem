@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
 import authReducer from './reducers/auth';
 import questionsReducer from './reducers/questions';
+import allTimeStatsReducer from './reducers/allTimeStats';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -11,7 +12,8 @@ const store = createStore(
     combineReducers({
         form: formReducer,
         auth: authReducer,
-        questions: questionsReducer
+        questions: questionsReducer,
+        allTimeStats: allTimeStatsReducer
     }), composeWithDevTools(
     applyMiddleware(thunk))
 );

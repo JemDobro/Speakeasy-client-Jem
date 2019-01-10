@@ -4,20 +4,21 @@ import {Field, reduxForm, focus} from 'redux-form';
 import Input from './Input';
 import {required, nonEmpty} from '../validators';
 import { submitAnswer} from '../actions/questions';
+import {fetchAllTimeStats} from '../actions/allTimeStats';
 
 export class AnswerSubmitForm extends React.Component {
     onSubmit(values) {
-        console.log(values);
         return this.props.dispatch(submitAnswer(values))
+        .then(() => this.props.dispatch(fetchAllTimeStats()))
     }
 
     render() {
         let error;
         if (this.props.error) {
             error = (
-                <div className="form-error" aria-live="polite">
+                <section className="form-error" aria-live="polite">
                     {this.props.error}
-                </div>
+                </section>
             );
         }
         return (
@@ -35,7 +36,7 @@ export class AnswerSubmitForm extends React.Component {
                     id="answer"
                     validate={[required, nonEmpty]}
                 />
-                <button disabled={this.props.pristine || this.props.submitting}>
+                <button className="game-btn" disabled={this.props.pristine || this.props.submitting}>
                     Submit
                 </button>
             </form>

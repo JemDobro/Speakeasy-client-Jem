@@ -7,6 +7,8 @@ import {
     SUBMIT_ANSWER_ERROR,
     INCORRECT_ANSWER,
     CORRECT_ANSWER,
+    TOGGLE_WANTS_INFO,
+    TOGGLE_REG_FORM,
     CLEAR_SESSION
 } from '../actions/questions';
 
@@ -17,6 +19,8 @@ const initialState = {
     correctAnswer: null,
     totalQuestionsAnswered: 0,
     questionsAnsweredCorrectly: 0,
+    wantsInfo: false,
+    showRegForm: false,
     loading: false,
     error: null
 };
@@ -37,6 +41,10 @@ export default function reducer(state = initialState, action) {
         return {...state, answerResult: 'incorrect', correctAnswer: action.answer};
         case CORRECT_ANSWER:
         return {...state, answerResult: 'correct', correctAnswer: action.answer, questionsAnsweredCorrectly: state.questionsAnsweredCorrectly + 1};
+        case TOGGLE_WANTS_INFO:
+        return {...state, wantsInfo: !state.wantsInfo};
+        case TOGGLE_REG_FORM:
+        return {...state, showRegForm: !state.showRegForm};
         case CLEAR_SESSION:
         return initialState;
         default: return state;

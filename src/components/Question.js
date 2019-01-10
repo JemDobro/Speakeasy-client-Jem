@@ -1,17 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {fetchQuestion} from '../actions/questions';
 
 export class Question extends React.Component {
+    componentDidMount() {
+        this.props.dispatch(fetchQuestion());
+    }
      
     render() {
-      console.log(`In render`, this.props);
       if (this.props.question.length < 1) {
-          return <div>Loading...</div>
+          return <section className="question">Loading...</section>
       }
       return (
-          <div className="question">
+          <section className="question">
             <p>{`Question: ${this.props.question}`}</p>
-          </div>
+          </section>
       )
   }
 }

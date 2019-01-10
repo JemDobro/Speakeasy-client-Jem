@@ -5,7 +5,8 @@ import {Route, withRouter} from 'react-router-dom';
 import HeaderBar from './HeaderBar';
 import LandingPage from './LandingPage';
 import Dashboard from './Dashboard';
-import RegistrationPage from './RegistrationPage';
+import LoggedOut from './LoggedOut';
+import Footer from './Footer';
 import {refreshAuthToken} from '../actions/auth';
 
 export class App extends React.Component {
@@ -26,7 +27,7 @@ export class App extends React.Component {
     startPeriodicRefresh() {
         this.refreshInterval = setInterval(
             () => this.props.dispatch(refreshAuthToken()),
-            60 * 60 * 1000 // One hour
+            7 * 24 * 60 * 60 * 1000 // One Week
         );
     }
 
@@ -44,7 +45,8 @@ export class App extends React.Component {
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/register" component={RegistrationPage} />
+                <Route exact path="/loggedOut" component={LoggedOut} />
+                <Footer />
             </div>
         );
     }
@@ -55,5 +57,4 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null
 });
 
-// Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(App));
