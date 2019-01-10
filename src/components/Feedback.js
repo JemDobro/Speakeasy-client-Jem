@@ -3,27 +3,26 @@ import {connect} from 'react-redux';
 import {fetchQuestion} from '../actions/questions';
 
 export class Feedback extends React.Component {
-    componentDidMount() {
-        console.log('feedback component mounted');
-    }
   
     render() {
         if (this.props.answerResult === 'correct') {
             return (
-                <main className="feedback-correct">
+                <section className="feedback-correct">
                     <p>{`You answered: ${this.props.answer}.`}</p>
-                    <p>You are correct - you just upped your stats and your status!  Keep Going!</p>
-                    <button onClick={() => this.props.dispatch(fetchQuestion())}>Next</button>        
-                </main>)
+                    <p>You are correct - you just upped your stats and your status!</p>
+                    <p>Keep Going!</p>
+                    <button className="game-btn" onClick={() => this.props.dispatch(fetchQuestion())}>Next</button>        
+                </section>)
         } else if (this.props.answerResult === 'incorrect') {
             return (
-                <main className="feedback-incorrect">
+                <section className="feedback-incorrect">
                     <p>{`You answered: ${this.props.answer}.`}</p>
-                    <p>{`The correct answer is: ${this.props.correctAnswer}.  Let's try another one!`}</p>
-                    <button onClick={() => 
+                    <p>{`The correct answer is: ${this.props.correctAnswer}.`}</p>
+                    <p>Let's try another one!</p>
+                    <button className="game-btn" onClick={() => 
                         this.props.dispatch(fetchQuestion())
                         }>Next</button>        
-                </main>
+                </section>
             )
         } else {
             return null;

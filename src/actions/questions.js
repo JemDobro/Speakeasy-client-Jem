@@ -48,6 +48,16 @@ export const correctAnswer = answer => ({
   answer
 });
 
+export const TOGGLE_WANTS_INFO = 'TOGGLE_WANTS_INFO';
+export const toggleWantsInfo = () => ({
+  type: TOGGLE_WANTS_INFO
+});
+
+export const TOGGLE_REG_FORM = 'TOGGLE_REG_FORM';
+export const toggleRegForm = () => ({
+    type: TOGGLE_REG_FORM
+});
+
 export const CLEAR_SESSION = 'CLEAR_SESSION';
 export const clearSession = () => ({
   type: CLEAR_SESSION
@@ -83,7 +93,6 @@ export const submitAnswer = (answer) => (dispatch, getState) => {
     })
       .then(res => normalizeResponseErrors(res))
       .then(res => res.json())
-      // .then(res => console.log(res))
       .then((res) => {
         if (res.memoryStrength === 1) {
             dispatch(incorrectAnswer(res.answer))

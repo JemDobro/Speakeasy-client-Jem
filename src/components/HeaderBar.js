@@ -1,37 +1,67 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {clearSession} from '../actions/questions';
-import {clearAuth} from '../actions/auth';
+import {toggleAllTimeStats, clearAllTimeStats} from '../actions/allTimeStats';
+import {clearAuth, toggleLoggedOut} from '../actions/auth';
+import {toggleWantsInfo} from '../actions/questions';
 import {clearAuthToken} from '../local-storage';
+import '../styles/headerBar.css';
 
 export class HeaderBar extends React.Component {
     logOut() {
+        this.props.dispatch(clearAllTimeStats());
         this.props.dispatch(clearSession());
         this.props.dispatch(clearAuth());
+        this.props.dispatch(toggleLoggedOut());
         clearAuthToken();
     }
 
     render() {
-        // Only render the log out button if we are logged in
         let logOutButton;
+        let allTimeStatsButton;
+        let greeting;
+        let infoButton = (
+            <button className="header-btn" onClick={() => this.props.dispatch(toggleWantsInfo())}>About</button>
+        );
         if (this.props.loggedIn) {
             logOutButton = (
-                <button onClick={() => this.logOut()}>Log out</button>
+                <button className="header-btn" onClick={() => this.logOut()}>Log out</button>
             );
-
+            allTimeStatsButton = (
+                <button className="header-btn" onClick={() => this.props.dispatch(toggleAllTimeStats())}>All Time Stats</button>
+            );
+            greeting = (
+                <h2 className="greeting">{`Hello ${this.props.firstName}, welcome to the club...`}</h2>
+            );
         }
+        if (this.props.loggedOut) {
+            infoButton = null;
+        }
+
         return (
-            <div className="header-bar">
-                <h1>Speakeasy</h1>
+            <header role="banner">
+                <img className='header-bar-img' src='https://res.cloudinary.com/cozyspaces/image/upload/c_scale,h_120/v1547073978/speakeasy-logo2.png' alt='Speakeasy logo' />
+                {infoButton}
+                {allTimeStatsButton}                
                 {logOutButton}
-            </div>
+                {greeting}
+            </header>
         );
     }
 }
 
-const mapStateToProps = state => {    
+const mapStateToProps = state => {
+    const {currentUser} = state.auth;
+    if (currentUser !== null) {
+        return {
+            loggedIn: state.auth.currentUser !== null,
+            firstName: `${currentUser.firstName}`,
+            wantsAllTimeStats: state.allTimeStats.wantsAllTimeStats
+        }
+    }
     return {
-        loggedIn: state.auth.currentUser !== null
+        loggedIn: state.auth.currentUser !== null,
+        loggedOut: state.auth.loggedOut
     };
 };
 

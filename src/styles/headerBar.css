@@ -1,0 +1,21 @@
+.header-bar-img {
+  display: flex;
+  /* flex-direction: column; */
+  width: 100%;   
+  line-height: 0;
+} 
+
+.header-btn {
+  background:rgba(255, 196, 0, 0.952);
+  color: black(14, 14, 75);
+  border: 1px solid black;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  flex-grow: 1;
+  min-width: 33.33%;
+  align-self: center;
+  /* align-items: stretch; */
+  margin-top: 0px;
+  font-weight: bold;
+}

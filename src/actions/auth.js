@@ -33,6 +33,11 @@ export const authError = error => ({
     error
 });
 
+export const TOGGLE_LOGGED_OUT = 'TOGGLE_LOGGED_OUT';
+export const toggleLoggedOut = () => ({
+    type: TOGGLE_LOGGED_OUT
+});
+
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {
@@ -80,7 +85,9 @@ export const login = (username, password) => dispatch => {
 
 export const refreshAuthToken = () => (dispatch, getState) => {
     dispatch(authRequest());
+    console.log('authRequest dispatched');
     const authToken = getState().auth.authToken;
+    console.log('authToken is:', authToken);
     return fetch(`${API_BASE_URL}/auth/refresh`, {
         method: 'POST',
         headers: {

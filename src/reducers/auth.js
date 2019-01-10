@@ -3,12 +3,14 @@ import {
     CLEAR_AUTH,
     AUTH_REQUEST,
     AUTH_SUCCESS,
-    AUTH_ERROR
+    AUTH_ERROR,
+    TOGGLE_LOGGED_OUT
 } from '../actions/auth';
 
 const initialState = {
-    authToken: null, // authToken !== null does not mean it has been validated
+    authToken: null, 
     currentUser: null,
+    loggedOut: false,
     loading: false,
     error: null
 };
@@ -25,6 +27,7 @@ export default function reducer(state = initialState, action) {
         });
     } else if (action.type === AUTH_REQUEST) {
         return Object.assign({}, state, {
+            loggedOut: false,
             loading: true,
             error: null
         });
@@ -32,9 +35,7 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             loading: false,
             currentUser: {
-                firstName: action.currentUser.firstName,
-                allTimeAttempted: action.currentUser.allTimeAttempted,
-                allTimeCorrect:  action.currentUser.allTimeCorrect
+                firstName: action.currentUser.firstName
             }
         });
     } else if (action.type === AUTH_ERROR) {
@@ -42,6 +43,10 @@ export default function reducer(state = initialState, action) {
             loading: false,
             error: action.error
         });
-    }
+    } else if (action.type === TOGGLE_LOGGED_OUT) {
+        return Object.assign({}, state, {
+            loggedOut: !state.loggedOut
+        });
+    } 
     return state;
 }
