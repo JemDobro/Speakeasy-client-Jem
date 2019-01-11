@@ -42,10 +42,9 @@ export function LandingPage(props) {
       <h2 className="greeting">Welcome to Speakeasy... do you know the secret knock?</h2>
       {loginImg}
       {loginForm}
-      <p>Do you find yourself nodding along with your smart tech friends, coworkers, or worse, your boss, as if you understand the latest tech jargon? All the while, secretly hoping that you won't have to feign choking on your drink if someone asks you a question? Are you yearning to get into the club but can't quite follow the conversation? Step into Speakeasy to learn the language through spaced repetition, up your stats and your status as you keep up to date with all the latest secret knocks that open doors... </p>
-      <p className="demoUser">**We recommend you create an account to start from zero questions answered and personalize the spaced repetition to you, but if you'd just like to take a test run, feel free to login with:</p>
-      <p className="demoUser">Username: ellafitzgerald</p>
-      <p className="demoUser">Password: ellafitzgerald</p>
+      <p>Do you find yourself nodding along with your smart tech friends, coworkers, or worse, your boss, as if you understand the latest tech jargon? All the while, secretly hoping that you won't have to feign choking on your drink if someone asks you a question? Are you yearning to get into the club but can't quite follow the conversation? Step into Speakeasy to learn the language through spaced repetition, up your stats and your status as you keep up to date with all the latest secret knocks that open doors... </p><br></br>
+    
+      <p>We recommend you create an account to start from zero questions answered and personalize the spaced repetition to you, but if you'd just like to take a test run, feel free to login with: <br></br>Username: ellafitzgerald <br></br> Password: ellafitzgerald</p>
       {regFormButton}
       {regImg}
       {regForm}
