@@ -71,15 +71,18 @@ label {
   margin-top: 10px;
 }
 
-.form-error {
-  color: white;
+.form-error, .form-error-login {
+  color: red;
   text-align: center;
   background-color: rgba(255, 196, 0, 0.952);
   border: 1px solid black;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3x;
   border-radius: 3px;
-  width: 100%;
+  width: 100%;  
+}
+
+.form-error-login {
   max-height: 30px;
 }
 

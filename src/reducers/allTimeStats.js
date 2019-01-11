@@ -17,15 +17,16 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_ALL_TIME_STATS:
-    return {...state, wantsAllTimeStats: !state.wantsAllTimeStats};
+      return {...state, wantsAllTimeStats: !state.wantsAllTimeStats};
     case FETCH_ALL_TIME_STATS_REQUEST:
-    return {...state, loading: true};
+      return {...state, loading: true};
     case FETCH_ALL_TIME_STATS_SUCCESS:
-    return {...state, allTimeAttempted: action.currentUser.allTimeAttempted, allTimeCorrect: action.currentUser.allTimeCorrect, loading: false};
+      return {...state, allTimeAttempted: action.currentUser.allTimeAttempted, allTimeCorrect: action.currentUser.allTimeCorrect, loading: false};
     case FETCH_ALL_TIME_STATS_ERROR:
-    return {...state, error: action.error, loading: false};
+      return {...state, error: action.error, loading: false};
     case CLEAR_ALL_TIME_STATS:
-    return initialState;
-    default: return state;
+      return initialState;
+    default: 
+      return state;
   }
 }
