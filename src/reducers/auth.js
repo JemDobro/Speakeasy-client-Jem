@@ -1,52 +1,41 @@
 import {
-    SET_AUTH_TOKEN,
-    CLEAR_AUTH,
-    AUTH_REQUEST,
-    AUTH_SUCCESS,
-    AUTH_ERROR,
-    TOGGLE_LOGGED_OUT
+  SET_AUTH_TOKEN,
+  CLEAR_AUTH,
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_ERROR,
+  TOGGLE_LOGGED_OUT
 } from '../actions/auth';
 
 const initialState = {
-    authToken: null, 
-    currentUser: null,
-    loggedOut: false,
-    loading: false,
-    error: null
+  authToken: null, 
+  currentUser: null,
+  loggedOut: false,
+  loading: false,
+  error: null
 };
 
+
 export default function reducer(state = initialState, action) {
-    if (action.type === SET_AUTH_TOKEN) {
-        return Object.assign({}, state, {
-            authToken: action.authToken
-        });
-    } else if (action.type === CLEAR_AUTH) {
-        return Object.assign({}, state, {
-            authToken: null,
-            currentUser: null
-        });
-    } else if (action.type === AUTH_REQUEST) {
-        return Object.assign({}, state, {
-            loggedOut: false,
-            loading: true,
-            error: null
-        });
-    } else if (action.type === AUTH_SUCCESS) {
-        return Object.assign({}, state, {
-            loading: false,
-            currentUser: {
-                firstName: action.currentUser.firstName
-            }
-        });
-    } else if (action.type === AUTH_ERROR) {
-        return Object.assign({}, state, {
-            loading: false,
-            error: action.error
-        });
-    } else if (action.type === TOGGLE_LOGGED_OUT) {
-        return Object.assign({}, state, {
-            loggedOut: !state.loggedOut
-        });
-    } 
-    return state;
+  switch (action.type) {
+    case SET_AUTH_TOKEN:
+    return {...state, authToken: action.authToken};
+    case CLEAR_AUTH:
+    return {...state, authToken: null, currentUser: null };
+    case AUTH_REQUEST:
+    return {...state, loggedOut: false, loading: true, error: null };
+    case AUTH_SUCCESS:
+    return {...state, loading: false, currentUser: {firstName: action.currentUser.firstName}};
+    case AUTH_ERROR:
+    return {...state, loading: false, error: action.error};
+    case TOGGLE_LOGGED_OUT:
+    return {...state,  loggedOut: !state.loggedOut};
+    default: return state;
+  }
 }
+
+
+
+ 
+  
+
