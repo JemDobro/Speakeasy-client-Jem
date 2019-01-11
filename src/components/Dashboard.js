@@ -8,33 +8,33 @@ import Info from './Info';
 import AllTimeStats from './AllTimeStats';
 
 export function Dashboard(props) {
-    
-    let allTimeStats;
-    let info;
-    if (props.wantsAllTimeStats) {
-        allTimeStats = <AllTimeStats />;
-    };
+  
+  let allTimeStats;
+  let info;
+  if (props.wantsAllTimeStats) {
+    allTimeStats = <AllTimeStats />;
+  };
 
-    if (props.wantsInfo) {
-        info = <Info />;
-    }
-            
-    return (
-        <main role="main" className="dashboard">
-            {info}
-            <Question />
-            <Answer />
-            <SessionStats />
-            {allTimeStats}
-        </main>
-    );    
+  if (props.wantsInfo) {
+    info = <Info />;
+  }
+      
+  return (
+    <main role="main" className="dashboard">
+      {info}
+      <Question />
+      <Answer />
+      <SessionStats />
+      {allTimeStats}
+    </main>
+  );    
 }
 
 const mapStateToProps = state => {
-    return {        
-        wantsAllTimeStats: state.allTimeStats.wantsAllTimeStats,
-        wantsInfo: state.questions.wantsInfo
-    };
+  return {        
+    wantsAllTimeStats: state.allTimeStats.wantsAllTimeStats,
+    wantsInfo: state.questions.wantsInfo
+  };
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));

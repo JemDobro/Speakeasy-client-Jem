@@ -7,9 +7,9 @@ import store from './store';
 import './styles/index.css';
 
 ReactDOM.render(<Router>
-    <Provider store={store}>
-        <App />
-    </Provider>
-    </Router>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>
+  </Router>,
+  document.getElementById('root')
 );

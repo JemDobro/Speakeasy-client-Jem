@@ -14,19 +14,19 @@ export function LoggedOut(props) {
   }
 
   return (
-      <main  className="loggedOut" role="main">        
-        <h2>You have successfully logged out. See you again soon... Cheers!</h2>
-        <button onClick={() => 
-          props.dispatch(toggleLoggedOut())
-          }>Log in again</button>        
-      </main>
+    <main  className="loggedOut" role="main">        
+    <h2>You have successfully logged out. See you again soon... Cheers!</h2>
+    <button onClick={() => 
+      props.dispatch(toggleLoggedOut())
+      }>Log in again</button>        
+    </main>
   );
-    
+  
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null,
-    loggedOut: state.auth.loggedOut
+  loggedIn: state.auth.currentUser !== null,
+  loggedOut: state.auth.loggedOut
 });
 
 export default connect(mapStateToProps)(LoggedOut);

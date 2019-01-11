@@ -13,7 +13,7 @@ export function Answer(props) {
 
 const mapStateToProps = state => {
   return {
-      answer: state.questions.answer
+    answer: state.questions.answer
   };
 };
 
