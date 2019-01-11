@@ -15,7 +15,7 @@ export class LoginForm extends React.Component {
     let error;
     if (this.props.error) {
       error = (
-        <section className="form-error" aria-live="polite">
+        <section className="form-error-login" aria-live="polite">
           {this.props.error}
         </section>
       );

@@ -2,6 +2,7 @@ import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
+import registrationReducer from './reducers/registration';
 import authReducer from './reducers/auth';
 import questionsReducer from './reducers/questions';
 import allTimeStatsReducer from './reducers/allTimeStats';
@@ -11,6 +12,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const store = createStore(
   combineReducers({
     form: formReducer,
+    registration: registrationReducer,
     auth: authReducer,
     questions: questionsReducer,
     allTimeStats: allTimeStatsReducer
