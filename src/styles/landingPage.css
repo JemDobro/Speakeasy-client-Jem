@@ -1,4 +1,20 @@
-.login-img, .reg-img {
+.login-img-container {
+  height: 400px;
+  width: auto;
+  overflow: hidden;
+  background-image: url(https://res.cloudinary.com/cozyspaces/image/upload/v1547078600/yellow-door2.jpg);
+  background-color: rgba(255, 196, 0, 0.952);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid rgba(255, 196, 0, 0.952);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 5px 3px 3px 3px;
+}
+
+.reg-img {
   border: 1px solid rgba(255, 196, 0, 0.952);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -8,4 +24,10 @@
 
 .reg-form-btn {
   width: 100%;
+}
+
+@media screen and (min-width: 1024px){
+  .login-img-container {
+    height: 500px;
+  } 
 }

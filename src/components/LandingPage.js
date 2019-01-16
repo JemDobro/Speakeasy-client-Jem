@@ -24,7 +24,9 @@ export function LandingPage(props) {
   }
   let regForm;
   let loginForm = <LoginForm />;
-  let loginImg = <img className='login-img' src='https://res.cloudinary.com/cozyspaces/image/upload/c_scale,w_546/v1547078600/yellow-door2.jpg' alt='closed yellow door with viewing hole' />;
+  let loginImg = (
+    <div className='login-img-container'></div>
+  );
   let regImg;
   if (props.showRegForm) {
     regImg = <img className='reg-img' src='https://res.cloudinary.com/cozyspaces/image/upload/c_scale,w_546/v1547063030/come-hang-out.jpg' alt='yellow wall that says, "come hangout" with an arrow pointing to the right around the corner of a blue wall' />;

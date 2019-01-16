@@ -40,7 +40,7 @@ export class HeaderBar extends React.Component {
 
     return (
       <header role="banner">
-        <img className='header-bar-img' src='https://res.cloudinary.com/cozyspaces/image/upload/c_scale,h_120/v1547073978/speakeasy-logo2.png' alt='Speakeasy logo' />
+        <img className='header-bar-img' src='https://res.cloudinary.com/cozyspaces/image/upload/c_scale,h_300/v1547516442/speakeasy-logo.png' alt='Speakeasy logo' />
         {infoButton}
         {allTimeStatsButton}                
         {logOutButton}
